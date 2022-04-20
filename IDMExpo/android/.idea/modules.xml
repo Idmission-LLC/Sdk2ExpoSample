@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IDMExpo.iml" filepath="$PROJECT_DIR$/.idea/modules/IDMExpo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/IDMExpo.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/IDMExpo.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1709057254/IDMExpo.expo.iml" filepath="$PROJECT_DIR$/.idea/modules/-1709057254/IDMExpo.expo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-711559139/IDMExpo.expo-application.iml" filepath="$PROJECT_DIR$/.idea/modules/-711559139/IDMExpo.expo-application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1372746660/IDMExpo.expo-constants.iml" filepath="$PROJECT_DIR$/.idea/modules/-1372746660/IDMExpo.expo-constants.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1685975181/IDMExpo.expo-error-recovery.iml" filepath="$PROJECT_DIR$/.idea/modules/1685975181/IDMExpo.expo-error-recovery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1241504147/IDMExpo.expo-file-system.iml" filepath="$PROJECT_DIR$/.idea/modules/-1241504147/IDMExpo.expo-file-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2100642274/IDMExpo.expo-font.iml" filepath="$PROJECT_DIR$/.idea/modules/2100642274/IDMExpo.expo-font.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1749333648/IDMExpo.expo-keep-awake.iml" filepath="$PROJECT_DIR$/.idea/modules/1749333648/IDMExpo.expo-keep-awake.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1644141896/IDMExpo.expo-modules-core.iml" filepath="$PROJECT_DIR$/.idea/modules/-1644141896/IDMExpo.expo-modules-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1943947233/IDMExpo.expo-splash-screen.iml" filepath="$PROJECT_DIR$/.idea/modules/-1943947233/IDMExpo.expo-splash-screen.iml" />
+    </modules>
+  </component>
+</project>
