@@ -1,5 +1,5 @@
 {
-  "scheme": "com.idmtest",
+  "scheme": null,
   "hostType": "lan",
   "lanType": "ip",
   "devClient": true,

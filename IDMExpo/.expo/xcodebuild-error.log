@@ -1,0 +1,14 @@
+objc[67467]: Class AppleTypeCRetimerRestoreInfoHelper is implemented in both /usr/lib/libauthinstall.dylib (0x1e1acdeb0) and /Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice (0x1086904f8). One of the two will be used. Which one is undefined.
+objc[67467]: Class AppleTypeCRetimerFirmwareAggregateRequestCreator is implemented in both /usr/lib/libauthinstall.dylib (0x1e1acdf00) and /Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice (0x108690548). One of the two will be used. Which one is undefined.
+objc[67467]: Class AppleTypeCRetimerFirmwareRequestCreator is implemented in both /usr/lib/libauthinstall.dylib (0x1e1acdf50) and /Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice (0x108690598). One of the two will be used. Which one is undefined.
+objc[67467]: Class ATCRTRestoreInfoFTABFile is implemented in both /usr/lib/libauthinstall.dylib (0x1e1acdfa0) and /Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice (0x1086905e8). One of the two will be used. Which one is undefined.
+objc[67467]: Class AppleTypeCRetimerFirmwareCopier is implemented in both /usr/lib/libauthinstall.dylib (0x1e1acdff0) and /Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice (0x108690638). One of the two will be used. Which one is undefined.
+objc[67467]: Class ATCRTRestoreInfoFTABSubfile is implemented in both /usr/lib/libauthinstall.dylib (0x1e1ace040) and /Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice (0x108690688). One of the two will be used. Which one is undefined.
+2022-04-20 20:42:00.400 xcodebuild[67467:10151675] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionSentinelHostApplications for extension Xcode.DebuggerFoundation.AppExtensionHosts.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
+2022-04-20 20:42:00.400 xcodebuild[67467:10151675] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionPointIdentifierToBundleIdentifier for extension Xcode.DebuggerFoundation.AppExtensionToBundleIdentifierMap.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
+2022-04-20 20:42:01.539 xcodebuild[67467:10151698]  DVTAssertions: Warning in /Library/Caches/com.apple.xbs/Sources/DVTiOSFrameworks/DVTiOSFrameworks-20038/DTDeviceKitBase/DTDKRemoteDeviceData.m:373
+Details:  (null) deviceType from 00008030-001150803401402E was NULL when -platform called.
+Object:   <DTDKMobileDeviceToken: 0x1325f44d0>
+Method:   -platform
+Thread:   <NSThread: 0x600003544440>{number = 7, name = (null)}
+Please file a bug at https://feedbackassistant.apple.com with this warning message and any useful information you can provide.
