@@ -202,34 +202,8 @@ class SuccessViewController: UIViewController {
     }
 
   override func viewWillAppear(_ animated: Bool) {
-          super.viewWillAppear(animated)
-          navigationController?.setNavigationBarHidden(false, animated: true)
-          navigationItem.setHidesBackButton(true, animated: true)
-
-          navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Submit", style: .plain, target: self, action: #selector(submit(sender:)))
-    
-           var obfuscatedText = textObfuscated
-           obfuscatedText = obfuscatedText?.replacingOccurrences(of: UserDefaults.defaultPassword, with: "", options: .literal, range: nil)
-
-           let alertController = UIAlertController(title: "Extracted Data", message: obfuscatedText, preferredStyle: .alert)
-           let OKAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
-               alertController.dismiss(animated: true, completion: nil)
-           }
-           alertController.addAction(OKAction)
-
-           let paragraphStyle = NSMutableParagraphStyle()
-           paragraphStyle.alignment = NSTextAlignment.left
-
-           let messageText = NSMutableAttributedString(
-               string: obfuscatedText ?? "Unable to obfuscate",
-               attributes: [
-                NSAttributedString.Key.paragraphStyle: paragraphStyle,
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13.0)
-               ]
-           )
-
-           alertController.setValue(messageText, forKey: "attributedMessage")
-           self.present(alertController, animated: true, completion: nil)
+        self.sendData()
+        self.dismiss()
       }
   
     @objc func submit(sender: Any) {
