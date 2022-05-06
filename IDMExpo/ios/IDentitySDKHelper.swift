@@ -118,6 +118,11 @@ class IDentitySDKHelper : NSObject{
     ViewController().startLiveFaceCheck(instance: instances);
   }
   
+  // Submit Result
+  @IBAction func submitResult(instances: UIViewController) {
+    ViewController().submitResult(instance: instances);
+  }
+  
   private func sendData(text: String) {
     let dict2:NSMutableDictionary? = ["data" : text ]
     let iDMissionSDK = IDMissionSDK()
