@@ -41,7 +41,17 @@ extension AdditionalCustomerEnrollBiometricRequestData {
     }
 }
 
+var validateIdResult2: ValidateIdResult?                             // 20
+var validateIdMatchFaceResult2: ValidateIdMatchFaceResult?           // 10
+var customerEnrollResult2: CustomerEnrollResult?                     // 50
+var customerEnrollBiometricsResult2: CustomerEnrollBiometricsResult? // 175
+var customerVerificationResult2: CustomerVerificationResult?         // 105
+var customerIdentifyResult2: CustomerIdentifyResult?                 // 185
+var liveFaceCheckResult2: LiveFaceCheckResult?                       // 660
+
 class ViewController: UIViewController {
+    var texts: String!
+  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         IDCapture.isDebugMode = UserDefaults.debugMode
@@ -59,6 +69,8 @@ class ViewController: UIViewController {
       IDentitySDK.idValidation(from: instance, options: options) { result in
           switch result {
           case .success(let validateIdResult):
+            self.emptyResults()
+            validateIdResult2 = validateIdResult
             let successViewController = SuccessViewController()
             successViewController.validateIdResult = validateIdResult
             successViewController.frontDetectedData = validateIdResult.front
@@ -78,6 +90,8 @@ class ViewController: UIViewController {
         IDentitySDK.idValidationAndMatchFace(from: instance, options: options) { result in
             switch result {
             case .success(let validateIdMatchFaceResult):
+              self.emptyResults()
+              validateIdMatchFaceResult2=validateIdMatchFaceResult
               let successViewController = SuccessViewController()
               successViewController.validateIdMatchFaceResult = validateIdMatchFaceResult
               successViewController.frontDetectedData = validateIdMatchFaceResult.front
@@ -98,6 +112,8 @@ class ViewController: UIViewController {
           IDentitySDK.idValidationAndCustomerEnroll(from: instance, personalData: personalData, options: options) { result in
               switch result {
               case .success(let customerEnrollResult):
+                self.emptyResults()
+                customerEnrollResult2=customerEnrollResult
                 let successViewController = SuccessViewController()
                 // set the customer's unique number
                 successViewController.customerEnrollResult = customerEnrollResult
@@ -119,6 +135,8 @@ class ViewController: UIViewController {
         IDentitySDK.customerEnrollBiometrics(from: instance, personalData: personalData, options: options) { result in
             switch result {
             case .success(let customerEnrollBiometricsResult):
+                self.emptyResults()
+                customerEnrollBiometricsResult2=customerEnrollBiometricsResult
                 // pass the API request to the success view controller
                 let successViewController = SuccessViewController()
                 successViewController.customerEnrollBiometricsResult = customerEnrollBiometricsResult
@@ -137,6 +155,8 @@ class ViewController: UIViewController {
         IDentitySDK.customerVerification(from: instance, personalData: personalData) { result in
             switch result {
             case .success(let customerVerificationResult):
+                self.emptyResults()
+                customerVerificationResult2=customerVerificationResult
                 // pass the API request to the success view controller
                 let successViewController = SuccessViewController()
                 successViewController.customerVerificationResult = customerVerificationResult
@@ -154,7 +174,9 @@ class ViewController: UIViewController {
         IDentitySDK.identifyCustomer(from: instance) { result in
             switch result {
             case .success(let customerIdentifyResult):
-                // pass the API request to the success view controller
+                    self.emptyResults()
+                    customerIdentifyResult2=customerIdentifyResult
+                    // pass the API request to the success view controller
                     let successViewController = SuccessViewController()
                     successViewController.customerIdentifyResult = customerIdentifyResult
                     let navigationController = UINavigationController(rootViewController: successViewController)
@@ -172,7 +194,9 @@ class ViewController: UIViewController {
         IDentitySDK.liveFaceCheck(from: instance) { result in
             switch result {
             case .success(let liveFaceCheckResult):
-                // pass the API request to the success view controller
+                    self.emptyResults()
+                    liveFaceCheckResult2=liveFaceCheckResult
+                    // pass the API request to the success view controller
                     let successViewController = SuccessViewController()
                     successViewController.liveFaceCheckResult = liveFaceCheckResult
                     let navigationController = UINavigationController(rootViewController: successViewController)
@@ -184,9 +208,179 @@ class ViewController: UIViewController {
         }
     }
 
+    func submitResult(instance: UIViewController) {
+      submit()
+    }
+
+    @objc func submit() {
+        if let validateIdResult = validateIdResult2 {
+            validateIdResult.submit { result, hostData in
+                self.navigationItem.leftBarButtonItem = nil
+                validateIdResult2 = nil
+                switch result {
+                case .success(let response):
+                    var hostDataString = ""
+                    if let hostData = hostData,
+                       let data = try? JSONSerialization.data(withJSONObject: hostData, options: [.prettyPrinted]),
+                       let json = String(data: data, encoding: .utf8) {
+                        hostDataString = "Host Data:\n\n" + json + "\n\n"
+                    }
+
+                    let encoder = JSONEncoder()
+                    encoder.outputFormatting = .prettyPrinted
+                    if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
+                        self.texts = json + "\n\n\(hostDataString)- - -\n\n"
+                    }
+                    self.sendData()
+                case .failure(let error):
+                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.sendData()
+                }
+            }
+        } else if let validateIdMatchFaceResult = validateIdMatchFaceResult2 {
+            validateIdMatchFaceResult.submit { result, hostData in
+                self.navigationItem.leftBarButtonItem = nil
+                validateIdMatchFaceResult2 = nil
+                switch result {
+                case .success(let response):
+                    var hostDataString = ""
+                    if let hostData = hostData,
+                       let data = try? JSONSerialization.data(withJSONObject: hostData, options: [.prettyPrinted]),
+                       let json = String(data: data, encoding: .utf8) {
+                        hostDataString = "Host Data:\n\n" + json + "\n\n"
+                    }
+
+                    let encoder = JSONEncoder()
+                    encoder.outputFormatting = .prettyPrinted
+                    if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
+                        self.texts = json + "\n\n\(hostDataString)- - -\n\n"
+                    }
+                    self.sendData()
+                case .failure(let error):
+                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.sendData()
+                }
+            }
+        } else if let customerEnrollResult = customerEnrollResult2 {
+            customerEnrollResult.submit { result, hostData in
+                self.navigationItem.leftBarButtonItem = nil
+                customerEnrollResult2 = nil
+                switch result {
+                case .success(let response):
+                    var hostDataString = ""
+                    if let hostData = hostData,
+                       let data = try? JSONSerialization.data(withJSONObject: hostData, options: [.prettyPrinted]),
+                       let json = String(data: data, encoding: .utf8) {
+                        hostDataString = "Host Data:\n\n" + json + "\n\n"
+                    }
+
+                    let encoder = JSONEncoder()
+                    encoder.outputFormatting = .prettyPrinted
+                    if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
+                        self.texts = json + "\n\n\(hostDataString)- - -\n\n"
+                    }
+                    self.sendData()
+                case .failure(let error):
+                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.sendData()
+                }
+            }
+        } else if let customerEnrollBiometricsResult = customerEnrollBiometricsResult2 {
+            customerEnrollBiometricsResult.submit { result in
+                self.navigationItem.leftBarButtonItem = nil
+                customerEnrollBiometricsResult2 = nil
+                switch result {
+                case .success(let response):
+                    let encoder = JSONEncoder()
+                    encoder.outputFormatting = .prettyPrinted
+                    if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
+                        self.texts = json + "\n\n- - -\n\n"
+                    }
+                    self.sendData()
+                case .failure(let error):
+                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.sendData()
+                }
+            }
+        } else if let customerVerificationResult = customerVerificationResult2 {
+            customerVerificationResult.submit { result in
+                self.navigationItem.leftBarButtonItem = nil
+                customerVerificationResult2 = nil
+                switch result {
+                case .success(var response):
+                    // stub out the base64 image text for logging
+                    response.responseCustomerVerifyData?.extractedPersonalData?.enrolledFaceImage = "..."
+
+                    let encoder = JSONEncoder()
+                    encoder.outputFormatting = .prettyPrinted
+                    if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
+                        self.texts = json + "\n\n- - -\n\n"
+                    }
+                    self.sendData()
+                case .failure(let error):
+                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.sendData()
+                }
+            }
+        } else if let customerIdentifyResult = customerIdentifyResult2 {
+            customerIdentifyResult.submit { result in
+                self.navigationItem.leftBarButtonItem = nil
+                customerIdentifyResult2 = nil
+                switch result {
+                case .success(var response):
+                    // stub out the base64 image text for logging
+                    response.responseCustomerData?.extractedPersonalData?.enrolledFaceImage = "..."
+
+                    let encoder = JSONEncoder()
+                    encoder.outputFormatting = .prettyPrinted
+                    if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
+                        self.texts = json + "\n\n- - -\n\n"
+                    }
+                    self.sendData()
+                case .failure(let error):
+                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.sendData()
+                }
+            }
+        } else if let liveFaceCheckResult = liveFaceCheckResult2 {
+            liveFaceCheckResult.submit { result in
+                self.navigationItem.leftBarButtonItem = nil
+                liveFaceCheckResult2 = nil
+                switch result {
+                case .success(let response):
+                    let encoder = JSONEncoder()
+                    encoder.outputFormatting = .prettyPrinted
+                    if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
+                        self.texts = json + "\n\n- - -\n\n"
+                    }
+                    self.sendData()
+                case .failure(let error):
+                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.sendData()
+                }
+            }
+        }
+    }
+  
+    private func sendData() {
+      let dict2:NSMutableDictionary? = ["data" : self.texts ?? ["data" : "error"]]
+      let iDMissionSDK = IDMissionSDK()
+      iDMissionSDK.getEvent2("DataCallback", dict: dict2 ?? ["data" : "error"])
+    }
+  
     private func sendData(text: String) {
       let dict2:NSMutableDictionary? = ["data" : text ]
       let iDMissionSDK = IDMissionSDK()
       iDMissionSDK.getEvent2("DataCallback", dict: dict2 ?? ["data" : "error"])
+    }
+  
+    func emptyResults(){
+      validateIdResult2 = nil
+      validateIdMatchFaceResult2 = nil
+      customerEnrollResult2 = nil
+      customerEnrollBiometricsResult2 = nil
+      customerVerificationResult2 = nil
+      customerIdentifyResult2 = nil
+      liveFaceCheckResult2 = nil
     }
 }
