@@ -110,6 +110,16 @@ RCT_EXPORT_METHOD(serviceID660)
   });
 }
 
+RCT_EXPORT_METHOD(submitResult)
+{
+  UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+  
+  dispatch_async(dispatch_get_main_queue(), ^{
+    IDentitySDKHelper *client = [IDentitySDKHelper new];
+    [client submitResultWithInstances: rootViewController];
+  });
+}
+
 RCT_EXPORT_MODULE(IDMissionSDK);
 
 + (void)getEvent: (NSString*)type dict:(NSMutableDictionary*) dict
