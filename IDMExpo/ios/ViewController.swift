@@ -229,11 +229,12 @@ class ViewController: UIViewController {
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
-                        self.texts = json + "\n\n\(hostDataString)- - -\n\n"
+                        //self.texts = json + "\n\n\(hostDataString)- - -\n\n"
+                        self.texts = json
                     }
                     self.sendData()
                 case .failure(let error):
-                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.texts = error.localizedDescription
                     self.sendData()
                 }
             }
@@ -253,11 +254,12 @@ class ViewController: UIViewController {
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
-                        self.texts = json + "\n\n\(hostDataString)- - -\n\n"
+                      //self.texts = json + "\n\n\(hostDataString)- - -\n\n"
+                      self.texts = json
                     }
                     self.sendData()
                 case .failure(let error):
-                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.texts = error.localizedDescription
                     self.sendData()
                 }
             }
@@ -277,11 +279,12 @@ class ViewController: UIViewController {
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
-                        self.texts = json + "\n\n\(hostDataString)- - -\n\n"
+                      //self.texts = json + "\n\n\(hostDataString)- - -\n\n"
+                      self.texts = json
                     }
                     self.sendData()
                 case .failure(let error):
-                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.texts = error.localizedDescription
                     self.sendData()
                 }
             }
@@ -294,11 +297,11 @@ class ViewController: UIViewController {
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
-                        self.texts = json + "\n\n- - -\n\n"
+                        self.texts = json
                     }
                     self.sendData()
                 case .failure(let error):
-                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.texts = error.localizedDescription
                     self.sendData()
                 }
             }
@@ -314,11 +317,11 @@ class ViewController: UIViewController {
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
-                        self.texts = json + "\n\n- - -\n\n"
+                        self.texts = json
                     }
                     self.sendData()
                 case .failure(let error):
-                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.texts = error.localizedDescription
                     self.sendData()
                 }
             }
@@ -334,11 +337,11 @@ class ViewController: UIViewController {
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
-                        self.texts = json + "\n\n- - -\n\n"
+                        self.texts = json
                     }
                     self.sendData()
                 case .failure(let error):
-                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.texts = error.localizedDescription
                     self.sendData()
                 }
             }
@@ -351,11 +354,11 @@ class ViewController: UIViewController {
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
-                        self.texts = json + "\n\n- - -\n\n"
+                        self.texts = json
                     }
                     self.sendData()
                 case .failure(let error):
-                    self.texts = error.localizedDescription + "\n\n- - -\n\n"
+                    self.texts = error.localizedDescription
                     self.sendData()
                 }
             }
