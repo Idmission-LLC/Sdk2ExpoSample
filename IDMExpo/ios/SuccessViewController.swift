@@ -52,14 +52,14 @@ class SuccessViewController: UIViewController {
           
             if let data = try? encoder.encode(request),
                let json = String(data: data, encoding: .utf8)  {
-                texts = json + "\n\n- - -\n\n"
+                texts = json
             } else {
                 texts = "ERROR"
             }
           
             if let dataObfuscated = try? encoder.encode(requestObfuscated),
                let jsonObfuscated = String(data: dataObfuscated, encoding: .utf8)  {
-                textObfuscated = jsonObfuscated + "\n\n- - -\n\n"
+                textObfuscated = jsonObfuscated
             } else {
                 textObfuscated = "ERROR"
             }
@@ -74,14 +74,14 @@ class SuccessViewController: UIViewController {
           
             if let data = try? encoder.encode(request),
                let json = String(data: data, encoding: .utf8)  {
-                texts = json + "\n\n- - -\n\n"
+                texts = json
             } else {
                 texts = "ERROR"
             }
           
             if let dataObfuscated = try? encoder.encode(requestObfuscated),
                let jsonObfuscated = String(data: dataObfuscated, encoding: .utf8)  {
-                textObfuscated = jsonObfuscated + "\n\n- - -\n\n"
+                textObfuscated = jsonObfuscated
             } else {
                 textObfuscated = "ERROR"
             }
@@ -96,14 +96,14 @@ class SuccessViewController: UIViewController {
           
             if let data = try? encoder.encode(request),
                let json = String(data: data, encoding: .utf8)  {
-                texts = json + "\n\n- - -\n\n"
+                texts = json
             } else {
                 texts = "ERROR"
             }
           
             if let dataObfuscated = try? encoder.encode(requestObfuscated),
                let jsonObfuscated = String(data: dataObfuscated, encoding: .utf8)  {
-                textObfuscated = jsonObfuscated + "\n\n- - -\n\n"
+                textObfuscated = jsonObfuscated
             } else {
                 textObfuscated = "ERROR"
             }
@@ -180,24 +180,6 @@ class SuccessViewController: UIViewController {
                 textObfuscated = "ERROR"
             }
         }
-
-        guard let frontDetectedData = frontDetectedData else { return }
-      
-        display(detectedData: frontDetectedData, type: frontDetectedData.type ?? "UNKNOWN")
-        if let backDetectedData = backDetectedData {
-            texts += "\n\n"
-            display(detectedData: backDetectedData, type: backDetectedData.type ?? "UNKNOWN")
-        } else {
-            texts += "\n"
-        }
-      
-        displayObfuscated(detectedData: frontDetectedData, type: frontDetectedData.type ?? "UNKNOWN")
-        if let backDetectedData = backDetectedData {
-            textObfuscated += "\n\n"
-            displayObfuscated(detectedData: backDetectedData, type: backDetectedData.type ?? "UNKNOWN")
-        } else {
-            textObfuscated += "\n"
-        }
       
     }
 
@@ -211,96 +193,6 @@ class SuccessViewController: UIViewController {
     let iDMissionSDK = IDMissionSDK()
     iDMissionSDK.getEvent2("DataCallback", dict: dict2 ?? ["data" : "error"])
   }
-  
-  private func display(detectedData data: DetectedData, type: String) {
-        texts += type + "\n\n"
-
-        texts += "Photo Present: "
-        texts += data.shouldHavePhoto ? (data.isPhotoPresent ? "YES" : "NO") : "N/A"
-        texts += "\n\n"
-
-        texts += "MRZ Present: "
-        if data.shouldHaveMrz || data.mrz != nil {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .short
-            dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
-            encoder.dateEncodingStrategy = .formatted(dateFormatter)
-            if let mrz = data.mrz,
-               let jsonData = try? encoder.encode(mrz),
-               let json = String(data: jsonData, encoding: .utf8) {
-               texts += "\n\n"
-               texts += json
-            } else {
-               texts += "NO"
-            }
-        } else {
-           texts += "N/A"
-        }
-        texts += "\n\n"
-
-        texts += "Barcode Present: "
-        if data.shouldHaveBarcode || data.barcode != nil {
-            if let barcode = data.barcode {
-               texts += "\n\n"
-                for key in barcode.keys {
-                    if let value = barcode[key] {
-                      texts += "\(key): \(value)\n"
-                    }
-                }
-            } else {
-               texts += "NO"
-            }
-        } else {
-           texts += "N/A"
-        }
-    }
-
-  private func displayObfuscated(detectedData data: DetectedData, type: String) {
-        textObfuscated += type + "\n\n"
-
-        textObfuscated += "Photo Present: "
-        textObfuscated += data.shouldHavePhoto ? (data.isPhotoPresent ? "YES" : "NO") : "N/A"
-        textObfuscated += "\n\n"
-
-        textObfuscated += "MRZ Present: "
-        if data.shouldHaveMrz || data.mrz != nil {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .short
-            dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
-            encoder.dateEncodingStrategy = .formatted(dateFormatter)
-            if let mrz = data.mrz,
-               let jsonData = try? encoder.encode(mrz),
-               let json = String(data: jsonData, encoding: .utf8) {
-                textObfuscated += "\n\n"
-                textObfuscated += json
-            } else {
-                textObfuscated += "NO"
-            }
-        } else {
-            textObfuscated += "N/A"
-        }
-        textObfuscated += "\n\n"
-
-        textObfuscated += "Barcode Present: "
-        if data.shouldHaveBarcode || data.barcode != nil {
-            if let barcode = data.barcode {
-                textObfuscated += "\n\n"
-                for key in barcode.keys {
-                    if let value = barcode[key] {
-                      textObfuscated += "\(key): \(value)\n"
-                    }
-                }
-            } else {
-                textObfuscated += "NO"
-            }
-        } else {
-            textObfuscated += "N/A"
-        }
-    }
   
     func dismiss() {
         dismiss(animated: true, completion: nil)
