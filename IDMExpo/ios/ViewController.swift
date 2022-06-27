@@ -54,10 +54,6 @@ class ViewController: UIViewController {
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        IDCapture.isDebugMode = UserDefaults.debugMode
-        SelfieCapture.isDebugMode = UserDefaults.debugMode
-        IDCapture.capture4K = UserDefaults.capture4K
-        SelfieCapture.capture4K = UserDefaults.capture4K
     }
 
     // MARK: - IBAction Methods
