@@ -27,7 +27,8 @@ target 'IDMExpo' do
   pod 'GoogleMLKit/ImageLabeling', :build_type => :dynamic_framework
   pod 'ZXingObjC', :build_type => :dynamic_framework
   pod 'GZIP', :build_type => :dynamic_framework
-
+  pod 'SSZipArchive', :build_type => :dynamic_framework
+  
   # Uncomment to opt-in to using Flipper
   #
   # if !ENV['CI']
