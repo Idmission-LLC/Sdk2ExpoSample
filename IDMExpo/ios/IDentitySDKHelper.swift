@@ -32,25 +32,6 @@ class IDentitySDKHelper : NSObject{
       IDentitySDK.apiBaseURL = url
     }
 
-    IDCapture.frontRealnessThreshold = UserDefaults.frontRealnessThreshold
-    IDCapture.backRealnessThreshold = UserDefaults.backRealnessThreshold
-    IDCapture.frontDocumentConfidence = UserDefaults.frontDocumentConfidence
-    IDCapture.backDocumentConfidence = UserDefaults.backDocumentConfidence
-    IDCapture.lowerWidthThresholdTolerance = UserDefaults.lowerWidthThresholdTolerance
-    IDCapture.upperWidthThresholdTolerance = UserDefaults.upperWidthThresholdTolerance
-
-    SelfieCapture.minFaceWidth = UserDefaults.minFaceWidth
-    SelfieCapture.eyeOpenProbability = UserDefaults.eyeOpenProbability
-    SelfieCapture.minHeadEulerAngle = UserDefaults.minHeadEulerAngle
-    SelfieCapture.maxHeadEulerAngle = UserDefaults.maxHeadEulerAngle
-    SelfieCapture.minRelativeNoseHeight = UserDefaults.minRelativeNoseHeight
-    SelfieCapture.maxRelativeNoseHeight = UserDefaults.maxRelativeNoseHeight
-    SelfieCapture.labelsConfidenceThreshold = UserDefaults.labelsConfidenceThreshold
-    SelfieCapture.faceMaskProbabilityThreshold = UserDefaults.faceMaskProbabilityThreshold
-    SelfieCapture.liveFaceProbabilityThreshold = UserDefaults.liveFaceProbabilityThreshold
-    SelfieCapture.consecutiveFakeFaceLimit = UserDefaults.consecutiveFakeFaceLimit
-    SelfieCapture.lightIntensityThreshold = UserDefaults.lightIntensityThreshold
-
     var LoginId:String
     if loginId.isEmpty {
       LoginId = UserDefaults.loginId
