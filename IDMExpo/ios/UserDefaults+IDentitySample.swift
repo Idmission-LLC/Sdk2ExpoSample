@@ -49,8 +49,8 @@ extension UserDefaults {
     static let defaultPassword = ""
     static let defaultMerchantId = ""
 
-    static let defaultFrontRealnessThreshold: Float = 0.8
-    static let defaultBackRealnessThreshold: Float = 0.8
+    static let defaultFrontRealnessThreshold: Float = 0.5
+    static let defaultBackRealnessThreshold: Float = 0.3
     static let defaultFrontDocumentConfidence: Float = 0.7
     static let defaultBackDocumentConfidence: Float = 0.7
     static let defaultLowerWidthThresholdTolerance: Float = 0.4     // 1.0 - 0.4 = 0.6
