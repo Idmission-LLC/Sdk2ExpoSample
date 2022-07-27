@@ -53,6 +53,8 @@ class IDentitySDKHelper : NSObject{
       MerchantId = merchantId
     }
     
+    IDentitySDK.pluginName = "Expo_Wrapper"
+    
     IDentitySDK.initializeSDK(loginId: LoginId, password: Password, merchantId: MerchantId) { error in
         if let error = error {
           print(error.localizedDescription)
