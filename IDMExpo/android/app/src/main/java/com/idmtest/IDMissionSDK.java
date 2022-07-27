@@ -137,6 +137,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                             MerchantID,
                             false,
                             true);
+            IdentityProofingSDK.setPluginName("Expo_Wrapper");
             return response;
         }
     }
