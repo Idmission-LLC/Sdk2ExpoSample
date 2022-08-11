@@ -21,7 +21,6 @@ target 'IDMExpo' do
   )
 
   pod 'TensorFlowLiteSwift', :build_type => :static_framework
-  pod 'TensorFlowLiteTaskText', :build_type => :dynamic_framework
   pod 'GoogleMLKit/TextRecognition', :build_type => :dynamic_framework
   pod 'GoogleMLKit/FaceDetection', :build_type => :dynamic_framework
   pod 'GoogleMLKit/ImageLabeling', :build_type => :dynamic_framework
