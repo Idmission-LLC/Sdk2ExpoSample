@@ -167,7 +167,6 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
             } else  {
                 WritableMap params = Arguments.createMap();
                 params.putString("data",parseResponse(apiResponse));
-                Toast.makeText(getReactApplicationContext().getCurrentActivity(), parseResponse(apiResponse), Toast.LENGTH_LONG).show();
                 sendEvent(getReactApplicationContext(), "DataCallback", params);
             }
         }
