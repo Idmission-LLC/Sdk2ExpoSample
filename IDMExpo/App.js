@@ -6,8 +6,8 @@ import * as constant from './Constant'
 import styles from './Styles'
 
 const { IDMissionSDK } = NativeModules;
-var initialize_url = "";
-var url = "";
+var initialize_url = "https://demo.idmission.com/";
+var url = "https://apidemo.idmission.com/";
 var login_id = "";
 var password = "";
 var merchant_id = "";
