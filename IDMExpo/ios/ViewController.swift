@@ -54,6 +54,7 @@ class ViewController: UIViewController {
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        IDCapture.options.enableRealId = false
     }
 
     // MARK: - IBAction Methods
@@ -61,6 +62,7 @@ class ViewController: UIViewController {
     // 20 - ID Validation
     func startIDValidation(instance: UIViewController) {
         // start ID capture, presenting it from this view controller
+      IDCapture.options.enableRealId = false
       let options = AdditionalCustomerWFlagCommonData(serviceOptions: UserDefaults.serviceOptions)
       IDentitySDK.idValidation(from: instance, options: options) { result in
           switch result {
