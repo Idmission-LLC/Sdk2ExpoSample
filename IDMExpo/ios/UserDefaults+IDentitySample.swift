@@ -35,7 +35,7 @@ struct ServiceOptions: Codable {
                        sendProcessedImagesInPost: false,
                        needImmediateResponse: false,
                        deduplicationSynchronous: false,
-                       verifyDataWithHost: false,
+                       verifyDataWithHost: true,
                        idBackImageRequired: true,
                        stripSpecialCharacters: true)
     }
