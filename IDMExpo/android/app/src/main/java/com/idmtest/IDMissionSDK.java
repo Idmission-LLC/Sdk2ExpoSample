@@ -44,9 +44,9 @@ import java.util.List;
 public class IDMissionSDK extends ReactContextBaseJavaModule implements ActivityEventListener {
     String InitializeApiBaseUrl = "https://demo.idmission.com/";
     String ApiBaseUrl = "https://apidemo.idmission.com/";
-    String LoginID = "";
-    String Password = "";
-    long MerchantID = 0;
+    String LoginID = "SDK_C";
+    String Password = "Idmission#2";
+    long MerchantID = 12511;
     private List<ProcessedCapture> processedCaptures = new ArrayList<>();
     private IdMissionCaptureLauncher launcher = new IdMissionCaptureLauncher();
     ReactApplicationContext reactContext;
