@@ -42,8 +42,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IDMissionSDK extends ReactContextBaseJavaModule implements ActivityEventListener {
-    String InitializeApiBaseUrl = "https://demo.idmission.com/";
-    String ApiBaseUrl = "https://apidemo.idmission.com/";
+    String InitializeApiBaseUrl = "";
+    String ApiBaseUrl = "";
     String LoginID = "";
     String Password = "";
     long MerchantID = 0;
@@ -85,12 +85,16 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
 
     @ReactMethod
     public void  serviceID20() {
-        IdentityProofingSDK.INSTANCE.idValidation(getReactApplicationContext().getCurrentActivity());
+        AdditionalCustomerFlagData additionalCustomerFlagData = new AdditionalCustomerFlagData();
+        additionalCustomerFlagData.setVerifyDataWithHost(VerifyDataWithHost.Y);
+        IdentityProofingSDK.INSTANCE.idValidation(getReactApplicationContext().getCurrentActivity(), additionalCustomerFlagData);
     }
 
     @ReactMethod
     public void  serviceID10() {
-        IdentityProofingSDK.INSTANCE.idValidationAndMatchFace(getReactApplicationContext().getCurrentActivity());
+        AdditionalCustomerFlagData additionalCustomerFlagData = new AdditionalCustomerFlagData();
+        additionalCustomerFlagData.setVerifyDataWithHost(VerifyDataWithHost.Y);
+        IdentityProofingSDK.INSTANCE.idValidationAndMatchFace(getReactApplicationContext().getCurrentActivity(), additionalCustomerFlagData);
     }
 
     @ReactMethod
@@ -106,7 +110,9 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
     @ReactMethod
     public void  serviceID50(String uniqueCustomerNumber) {
         if(!StringUtils.isEmpty(uniqueCustomerNumber)){
-            IdentityProofingSDK.INSTANCE.idValidationAndcustomerEnroll(getReactApplicationContext().getCurrentActivity(), uniqueCustomerNumber);
+            AdditionalCustomerFlagData additionalCustomerFlagData = new AdditionalCustomerFlagData();
+            additionalCustomerFlagData.setVerifyDataWithHost(VerifyDataWithHost.Y);
+            IdentityProofingSDK.INSTANCE.idValidationAndcustomerEnroll(getReactApplicationContext().getCurrentActivity(), uniqueCustomerNumber, additionalCustomerFlagData);
         }
     }
 
