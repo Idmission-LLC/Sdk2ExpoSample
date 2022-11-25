@@ -280,7 +280,15 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                 }catch(Exception e){
                     e.printStackTrace();
                 }
+            }else{
+                WritableMap params = Arguments.createMap();
+                params.putString("data","Canceled");
+                sendEvent(getReactApplicationContext(), "DataCallback", params);
             }
+        }else{
+            WritableMap params = Arguments.createMap();
+            params.putString("data","Canceled");
+            sendEvent(getReactApplicationContext(), "DataCallback", params);
         }
     }
 
