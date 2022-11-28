@@ -639,7 +639,9 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                 extractedPersonalData.put("city",epd.getCity());
                 extractedPersonalData.put("addressNonEng",epd.getAddressNonEng());
                 extractedPersonalData.put("country",epd.getCountry());
+                extractedPersonalData.put("state",epd.getState());
                 extractedPersonalData.put("district",epd.getDistrict());
+                extractedPersonalData.put("postalCode",epd.getPostalCode());
                 extractedPersonalData.put("dob",epd.getDob());
                 extractedPersonalData.put("email",epd.getEmail());
                 extractedPersonalData.put("enrolledDate",epd.getEnrolledDate());
