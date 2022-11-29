@@ -16,13 +16,18 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.idmission.sdk2.capture.IdMissionCaptureLauncher;
 import com.idmission.sdk2.capture.presentation.camera.helpers.ProcessedCapture;
+import com.idmission.sdk2.client.model.AdditionalCustomerFlagData;
 import com.idmission.sdk2.client.model.AdditionalCustomerLiveCheckResponseData;
 import com.idmission.sdk2.client.model.AliasesResponse;
+import com.idmission.sdk2.client.model.CameraFacing;
+import com.idmission.sdk2.client.model.CameraOrientation;
 import com.idmission.sdk2.client.model.CommonApiResponse;
 import com.idmission.sdk2.client.model.CriminalRecordResponse;
+import com.idmission.sdk2.client.model.DocumentCaptureCustomizationOptions;
 import com.idmission.sdk2.client.model.ExtractedIdData;
 import com.idmission.sdk2.client.model.ExtractedPersonalData;
 import com.idmission.sdk2.client.model.HostDataResponse;
+import com.idmission.sdk2.client.model.IDCaptureCustomizationOptions;
 import com.idmission.sdk2.client.model.InitializeResponse;
 import com.idmission.sdk2.client.model.NmResultResponse;
 import com.idmission.sdk2.client.model.OffensesResponse;
@@ -31,11 +36,16 @@ import com.idmission.sdk2.client.model.ProfilesResponse;
 import com.idmission.sdk2.client.model.Response;
 import com.idmission.sdk2.client.model.ResponseCustomerData;
 import com.idmission.sdk2.client.model.ResultData;
+import com.idmission.sdk2.client.model.SDKCustomizationOptions;
+import com.idmission.sdk2.client.model.SelfieCaptureCustomizationOptions;
 import com.idmission.sdk2.client.model.SexOffendersResponse;
 import com.idmission.sdk2.client.model.Status;
 import com.idmission.sdk2.client.model.TextMatchResultResponse;
+import com.idmission.sdk2.client.model.VerifyDataWithHost;
 import com.idmission.sdk2.client.model.WlsResultResponse;
 import com.idmission.sdk2.identityproofing.IdentityProofingSDK;
+import com.idmission.sdk2.utils.LANGUAGE;
+
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 import java.util.ArrayList;
@@ -87,7 +97,10 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
     public void  serviceID20() {
         AdditionalCustomerFlagData additionalCustomerFlagData = new AdditionalCustomerFlagData();
         additionalCustomerFlagData.setVerifyDataWithHost(VerifyDataWithHost.Y);
-        IdentityProofingSDK.INSTANCE.idValidation(getReactApplicationContext().getCurrentActivity(), additionalCustomerFlagData);
+        SDKCustomizationOptions ss = new SDKCustomizationOptions(LANGUAGE.EN, false, false, false,
+                CameraFacing.BACK, CameraFacing.BACK, CameraOrientation.PORTRAIT, false,
+                new SelfieCaptureCustomizationOptions(),  new IDCaptureCustomizationOptions(false), new DocumentCaptureCustomizationOptions());
+        IdentityProofingSDK.INSTANCE.idValidation(getReactApplicationContext().getCurrentActivity(), additionalCustomerFlagData, ss);
     }
 
     @ReactMethod
@@ -349,6 +362,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
 
             try {
                 ExtractedIdData eid = rcd.getExtractedIdData();
+                extractedIdData.put("ageOver18",eid.getAgeOver18());
                 extractedIdData.put("barcodeDataParsed",eid.getBarcodeDataParsed());
                 extractedIdData.put("idCountry",eid.getIdCountry());
                 extractedIdData.put("idDateOfBirth",eid.getIdDateOfBirth());
@@ -360,6 +374,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                 extractedIdData.put("idIssueCountry",eid.getIdIssueCountry());
                 extractedIdData.put("idIssueDate",eid.getIdIssueDate());
                 extractedIdData.put("idIssueDateNonEng",eid.getIdIssueDateNonEng());
+                extractedIdData.put("idNotExpired",eid.getIdNotExpired());
                 extractedIdData.put("idNumber",eid.getIdNumber());
                 extractedIdData.put("idNumberNonEng",eid.getIdNumberNonEng());
                 extractedIdData.put("idNumber1",eid.getIdNumber1());
@@ -369,6 +384,10 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                 extractedIdData.put("idState",eid.getIdState());
                 extractedIdData.put("idType",eid.getIdType());
                 extractedIdData.put("mrzData",eid.getMrzData());
+                extractedIdData.put("mrzErrorMessage",eid.getMrzErrorMessage());
+                extractedIdData.put("nationality",eid.getNationality());
+                extractedIdData.put("negativeDBMatchFound",eid.getNegativeDBMatchFound());
+                extractedIdData.put("validIdNumber",eid.getValidIdNumber());
                 responseCustomerData.put("extractedIdData",extractedIdData);
             }catch(Exception e){}
 
@@ -607,6 +626,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
 
             try {
                 ExtractedIdData eid = rcvd.getExtractedIdData();
+                extractedIdData.put("ageOver18",eid.getAgeOver18());
                 extractedIdData.put("barcodeDataParsed",eid.getBarcodeDataParsed());
                 extractedIdData.put("idCountry",eid.getIdCountry());
                 extractedIdData.put("idDateOfBirth",eid.getIdDateOfBirth());
@@ -618,6 +638,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                 extractedIdData.put("idIssueCountry",eid.getIdIssueCountry());
                 extractedIdData.put("idIssueDate",eid.getIdIssueDate());
                 extractedIdData.put("idIssueDateNonEng",eid.getIdIssueDateNonEng());
+                extractedIdData.put("idNotExpired",eid.getIdNotExpired());
                 extractedIdData.put("idNumber",eid.getIdNumber());
                 extractedIdData.put("idNumberNonEng",eid.getIdNumberNonEng());
                 extractedIdData.put("idNumber1",eid.getIdNumber1());
@@ -627,6 +648,10 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                 extractedIdData.put("idState",eid.getIdState());
                 extractedIdData.put("idType",eid.getIdType());
                 extractedIdData.put("mrzData",eid.getMrzData());
+                extractedIdData.put("mrzErrorMessage",eid.getMrzErrorMessage());
+                extractedIdData.put("nationality",eid.getNationality());
+                extractedIdData.put("negativeDBMatchFound",eid.getNegativeDBMatchFound());
+                extractedIdData.put("validIdNumber",eid.getValidIdNumber());
                 responseCustomerVerifyData.put("extractedIdData",extractedIdData);
             }catch(Exception e){}
 
