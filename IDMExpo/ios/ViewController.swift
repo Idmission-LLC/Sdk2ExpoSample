@@ -54,7 +54,6 @@ class ViewController: UIViewController {
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        IDCapture.options.enableRealId = false
     }
 
     // MARK: - IBAction Methods
@@ -62,7 +61,6 @@ class ViewController: UIViewController {
     // 20 - ID Validation
     func startIDValidation(instance: UIViewController) {
         // start ID capture, presenting it from this view controller
-      IDCapture.options.enableRealId = false
       let options = AdditionalCustomerWFlagCommonData(serviceOptions: UserDefaults.serviceOptions)
       IDentitySDK.idValidation(from: instance, options: options) { result in
           switch result {
@@ -230,7 +228,6 @@ class ViewController: UIViewController {
                       //self.texts = json + "\n\n\(hostDataString)- - -\n\n"
                       self.texts = json
                     }
-                    self.texts = "\n\n\(hostData)- - -\n\n" + "\n\n\(hostDataString)- - -\n\n"
                     self.sendData()
                 case .failure(let error):
                     self.texts = error.localizedDescription
