@@ -42,8 +42,8 @@ struct ServiceOptions: Codable {
 }
 
 extension UserDefaults {
-    static let defaultTemplateModelBaseURL = "https://demo.idmission.com/IDS/service/"
-    static let defaultAPIBaseURL = "https://apidemo.idmission.com/"
+    static let defaultTemplateModelBaseURL = ""
+    static let defaultAPIBaseURL = ""
 
     static let defaultLoginId = ""
     static let defaultPassword = ""
