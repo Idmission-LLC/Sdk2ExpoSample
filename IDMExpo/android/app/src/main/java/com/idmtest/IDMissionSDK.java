@@ -97,10 +97,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
     public void  serviceID20() {
         AdditionalCustomerFlagData additionalCustomerFlagData = new AdditionalCustomerFlagData();
         additionalCustomerFlagData.setVerifyDataWithHost(VerifyDataWithHost.Y);
-        SDKCustomizationOptions ss = new SDKCustomizationOptions(LANGUAGE.EN, false, false, false,
-                CameraFacing.BACK, CameraFacing.BACK, CameraOrientation.PORTRAIT, false,
-                new SelfieCaptureCustomizationOptions(),  new IDCaptureCustomizationOptions(false), new DocumentCaptureCustomizationOptions());
-        IdentityProofingSDK.INSTANCE.idValidation(getReactApplicationContext().getCurrentActivity(), additionalCustomerFlagData, ss);
+        IdentityProofingSDK.INSTANCE.idValidation(getReactApplicationContext().getCurrentActivity(), additionalCustomerFlagData);
     }
 
     @ReactMethod
