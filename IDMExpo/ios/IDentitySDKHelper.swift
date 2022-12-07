@@ -29,7 +29,7 @@ class IDentitySDKHelper : NSObject{
     if url.isEmpty {
       IDentitySDK.apiBaseURL = UserDefaults.apiBaseURL
     }else{
-      IDentitySDK.apiBaseURL = url
+      IDentitySDK.apiBaseURL = url + "v2/"
     }
 
     var LoginId:String
