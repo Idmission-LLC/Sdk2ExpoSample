@@ -215,18 +215,21 @@ class ViewController: UIViewController {
                 validateIdResult2 = nil
                 switch result {
                 case .success(let response):
-                    var hostDataString = ""
+                   var hostDataString = ""
                     if let hostData = hostData,
                        let data = try? JSONSerialization.data(withJSONObject: hostData, options: [.prettyPrinted]),
                        let json = String(data: data, encoding: .utf8) {
-                        hostDataString = "Host Data:\n\n" + json + "\n\n"
+                        hostDataString = json
                     }
 
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
-                      self.texts = json + "\n\n\(hostDataString)- - -\n\n"
-                      //self.texts = json
+                      if((hostDataString) != ""){
+                        self.texts = "{\"response\":"+json+", \"hostResponse\":"+hostDataString+"}"
+                      }else{
+                        self.texts = json
+                      }
                     }
                     self.sendData()
                 case .failure(let error):
@@ -244,14 +247,17 @@ class ViewController: UIViewController {
                     if let hostData = hostData,
                        let data = try? JSONSerialization.data(withJSONObject: hostData, options: [.prettyPrinted]),
                        let json = String(data: data, encoding: .utf8) {
-                        hostDataString = "Host Data:\n\n" + json + "\n\n"
+                        hostDataString = json
                     }
 
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
-                      self.texts = json + "\n\n\(hostDataString)- - -\n\n"
-                      //self.texts = json
+                      if((hostDataString) != ""){
+                        self.texts = "{\"response\":"+json+", \"hostResponse\":"+hostDataString+"}"
+                      }else{
+                        self.texts = json
+                      }
                     }
                     self.sendData()
                 case .failure(let error):
@@ -269,14 +275,17 @@ class ViewController: UIViewController {
                     if let hostData = hostData,
                        let data = try? JSONSerialization.data(withJSONObject: hostData, options: [.prettyPrinted]),
                        let json = String(data: data, encoding: .utf8) {
-                        hostDataString = "Host Data:\n\n" + json + "\n\n"
+                        hostDataString = json
                     }
 
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
-                      self.texts = json + "\n\n\(hostDataString)- - -\n\n"
-                      //self.texts = json
+                      if((hostDataString) != ""){
+                        self.texts = "{\"response\":"+json+", \"hostResponse\":"+hostDataString+"}"
+                      }else{
+                        self.texts = json
+                      }
                     }
                     self.sendData()
                 case .failure(let error):
