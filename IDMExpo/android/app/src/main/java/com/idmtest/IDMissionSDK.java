@@ -597,7 +597,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                     hostDataResponseData.put("wlsresult",wlsResultResponseData);
                 }catch(Exception e){}
 
-                responseCustomerData.put("hostDataResponse",hostDataResponseData);
+                jo.put("hostResponse",hostDataResponseData);
             }catch(Exception e){}
 
             jo.put("responseCustomerData", responseCustomerData);
@@ -859,7 +859,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                         wlsResultResponseData.put("orderUrlWLS",wrr.getOrderUrlWLS());
                         hostDataResponseData.put("wlsresult",wlsResultResponseData);
                     }catch(Exception e){}
-                responseCustomerVerifyData.put("hostDataResponse",hostDataResponseData);
+                jo.put("hostResponse",hostDataResponseData);
             }catch(Exception e){}
 
             jo.put("responseCustomerVerifyData", responseCustomerVerifyData);
