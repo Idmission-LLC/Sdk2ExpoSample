@@ -858,7 +858,9 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                     }catch(Exception e){}
             }catch(Exception e){}
 
-            jo.put("responseCustomerVerifyData", responseCustomerVerifyData);
+            if(responseCustomerVerifyData.length()>1){
+                jo.put("responseCustomerVerifyData", responseCustomerVerifyData);
+            }
         }catch(Exception e){}
 
         try {
