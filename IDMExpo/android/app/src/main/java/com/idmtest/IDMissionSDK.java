@@ -343,7 +343,6 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
             JSONObject responseCustomerData = new JSONObject();
             JSONObject extractedIdData = new JSONObject();
             JSONObject extractedPersonalData = new JSONObject();
-            JSONObject hostDataResponseData = new JSONObject();
             JSONObject criminalRecordResponseData = new JSONObject();
             JSONObject aliasesResponseData = new JSONObject();
             JSONObject offensesResponseData = new JSONObject();
@@ -493,7 +492,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                         criminalRecordResponseData.put("profiles",profilesResponseData);
                     }catch(Exception e){}
 
-                    hostDataResponseData.put("criminalRecord",criminalRecordResponseData);
+                    jo.put("criminalRecord",criminalRecordResponseData);
 
                 }catch(Exception e){}
 
@@ -506,7 +505,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                     nmResultResponseResponseData.put("orderUrlNM",nrr.getOrderUrlNM());
                     nmResultResponseResponseData.put("productIdNM",nrr.getProductIdNM());
                     nmResultResponseResponseData.put("vital4APIHostTried",nrr.getVital4APIHostTried());
-                    hostDataResponseData.put("nmResult",nmResultResponseResponseData);
+                    jo.put("nmResult",nmResultResponseResponseData);
                 }catch(Exception e){}
 
                 try {
@@ -517,7 +516,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                     pepResultResponseData.put("productId_PEP",prr.getProductId_PEP());
                     pepResultResponseData.put("orderUrlPEP",prr.getOrderUrlPEP());
                     pepResultResponseData.put("orderStatus_PEP",prr.getOrderStatus_PEP());
-                    hostDataResponseData.put("pepresult",pepResultResponseData);
+                    jo.put("pepresult",pepResultResponseData);
                 }catch(Exception e){}
 
                 try {
@@ -550,7 +549,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                     textMatchResultResponseData.put("servicePresent",tmrr.getServicePresent());
                     textMatchResultResponseData.put("thirdPartyVerificationResultDescription",tmrr.getThirdPartyVerificationResultDescription());
                     textMatchResultResponseData.put("verificationResult",tmrr.getVerificationResult());
-                    hostDataResponseData.put("textMatchResult",textMatchResultResponseData);
+                    jo.put("textMatchResult",textMatchResultResponseData);
                 }catch(Exception e){}
 
                 try {
@@ -583,7 +582,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                         sexOffendersResponseData.put("profiles",profilesResponse2Data);
                     }catch(Exception e){}
 
-                    hostDataResponseData.put("sexOffenders",sexOffendersResponseData);
+                    jo.put("sexOffenders",sexOffendersResponseData);
                 }catch(Exception e){}
 
                 try {
@@ -594,10 +593,9 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                     wlsResultResponseData.put("productIdWLS",wrr.getProductIdWLS());
                     wlsResultResponseData.put("orderStatusWLS",wrr.getOrderStatusWLS());
                     wlsResultResponseData.put("orderUrlWLS",wrr.getOrderUrlWLS());
-                    hostDataResponseData.put("wlsresult",wlsResultResponseData);
+                    jo.put("wlsresult",wlsResultResponseData);
                 }catch(Exception e){}
 
-                jo.put("hostResponse",hostDataResponseData);
             }catch(Exception e){}
 
             jo.put("responseCustomerData", responseCustomerData);
@@ -607,7 +605,6 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
             JSONObject responseCustomerVerifyData = new JSONObject();
             JSONObject extractedIdData = new JSONObject();
             JSONObject extractedPersonalData = new JSONObject();
-            JSONObject hostDataResponseData = new JSONObject();
             JSONObject criminalRecordResponseData = new JSONObject();
             JSONObject aliasesResponseData = new JSONObject();
             JSONObject offensesResponseData = new JSONObject();
@@ -757,7 +754,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                                 criminalRecordResponseData.put("profiles",profilesResponseData);
                             }catch(Exception e){}
 
-                        hostDataResponseData.put("criminalRecord",criminalRecordResponseData);
+                        jo.put("criminalRecord",criminalRecordResponseData);
                     }catch(Exception e){}
 
                     try {
@@ -769,7 +766,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                         nmResultResponseResponseData.put("orderUrlNM",nrr.getOrderUrlNM());
                         nmResultResponseResponseData.put("productIdNM",nrr.getProductIdNM());
                         nmResultResponseResponseData.put("vital4APIHostTried",nrr.getVital4APIHostTried());
-                        hostDataResponseData.put("nmResult",nmResultResponseResponseData);
+                        jo.put("nmResult",nmResultResponseResponseData);
                     }catch(Exception e){}
 
                     try {
@@ -780,7 +777,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                         pepResultResponseData.put("productId_PEP",prr.getProductId_PEP());
                         pepResultResponseData.put("orderUrlPEP",prr.getOrderUrlPEP());
                         pepResultResponseData.put("orderStatus_PEP",prr.getOrderStatus_PEP());
-                        hostDataResponseData.put("pepresult",pepResultResponseData);
+                        jo.put("pepresult",pepResultResponseData);
                     }catch(Exception e){}
 
                     try {
@@ -813,7 +810,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                         textMatchResultResponseData.put("servicePresent",tmrr.getServicePresent());
                         textMatchResultResponseData.put("thirdPartyVerificationResultDescription",tmrr.getThirdPartyVerificationResultDescription());
                         textMatchResultResponseData.put("verificationResult",tmrr.getVerificationResult());
-                        hostDataResponseData.put("textMatchResult",textMatchResultResponseData);
+                        jo.put("textMatchResult",textMatchResultResponseData);
                     }catch(Exception e){}
 
                     try {
@@ -846,7 +843,7 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                                 sexOffendersResponseData.put("profiles",profilesResponse2Data);
                             }catch(Exception e){}
 
-                        hostDataResponseData.put("sexOffenders",sexOffendersResponseData);
+                        jo.put("sexOffenders",sexOffendersResponseData);
                     }catch(Exception e){}
 
                     try {
@@ -857,9 +854,8 @@ public class IDMissionSDK extends ReactContextBaseJavaModule implements Activity
                         wlsResultResponseData.put("productIdWLS",wrr.getProductIdWLS());
                         wlsResultResponseData.put("orderStatusWLS",wrr.getOrderStatusWLS());
                         wlsResultResponseData.put("orderUrlWLS",wrr.getOrderUrlWLS());
-                        hostDataResponseData.put("wlsresult",wlsResultResponseData);
+                        jo.put("wlsresult",wlsResultResponseData);
                     }catch(Exception e){}
-                jo.put("hostResponse",hostDataResponseData);
             }catch(Exception e){}
 
             jo.put("responseCustomerVerifyData", responseCustomerVerifyData);
