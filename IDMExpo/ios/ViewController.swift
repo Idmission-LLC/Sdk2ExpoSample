@@ -9,6 +9,7 @@ import UIKit
 import IDentitySDK_Swift
 import IDCapture_Swift
 import SelfieCapture_Swift
+import SwiftyJSON
 
 extension AdditionalCustomerWFlagCommonData {
     init(serviceOptions options: ServiceOptions) {
@@ -38,6 +39,31 @@ extension AdditionalCustomerEnrollBiometricRequestData {
     init(serviceOptions options: ServiceOptions) {
         self = AdditionalCustomerEnrollBiometricRequestData(needImmediateResponse: options.needImmediateResponse ? .yes : .no,
                                                             deDuplicationRequired: options.deDuplicationRequired ? .yes : .no)
+    }
+}
+
+extension JSON {
+    mutating func merge(other: JSON) {
+        if self.type == other.type {
+            switch self.type {
+                case .dictionary:
+                    for (key, _) in other {
+                        self[key].merge(other: other[key])
+                    }
+                case .array:
+                    self = JSON(self.arrayValue + other.arrayValue)
+                default:
+                    self = other
+            }
+        } else {
+            self = other
+        }
+    }
+
+    func merged(other: JSON) -> JSON {
+        var merged = self
+        merged.merge(other: other)
+        return merged
     }
 }
 
@@ -216,19 +242,22 @@ class ViewController: UIViewController {
                 switch result {
                 case .success(let response):
                    var hostDataString = ""
+                   var hostDataJson: JSON = [] 
                     if let hostData = hostData,
                        let data = try? JSONSerialization.data(withJSONObject: hostData, options: [.prettyPrinted]),
                        let json = String(data: data, encoding: .utf8) {
+                        hostDataJson = JSON(hostData)   
                         hostDataString = json
                     }
 
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
+                      let responseJson = JSON(data)  
                       if((hostDataString) != ""){
-                        self.texts = "{\"response\":"+json+", \"hostResponse\":"+hostDataString+"}"
+                        self.texts = responseJson.merged(other: hostDataJson).rawString()
                       }else{
-                        self.texts = json
+                        self.texts = responseJson.rawString()
                       }
                     }
                     self.sendData()
@@ -244,19 +273,22 @@ class ViewController: UIViewController {
                 switch result {
                 case .success(let response):
                     var hostDataString = ""
+                    var hostDataJson: JSON = [] 
                     if let hostData = hostData,
                        let data = try? JSONSerialization.data(withJSONObject: hostData, options: [.prettyPrinted]),
                        let json = String(data: data, encoding: .utf8) {
+                        hostDataJson = JSON(hostData)   
                         hostDataString = json
                     }
 
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
+                      let responseJson = JSON(data)  
                       if((hostDataString) != ""){
-                        self.texts = "{\"response\":"+json+", \"hostResponse\":"+hostDataString+"}"
+                        self.texts = responseJson.merged(other: hostDataJson).rawString()
                       }else{
-                        self.texts = json
+                        self.texts = responseJson.rawString()
                       }
                     }
                     self.sendData()
@@ -272,19 +304,22 @@ class ViewController: UIViewController {
                 switch result {
                 case .success(let response):
                     var hostDataString = ""
+                    var hostDataJson: JSON = [] 
                     if let hostData = hostData,
                        let data = try? JSONSerialization.data(withJSONObject: hostData, options: [.prettyPrinted]),
                        let json = String(data: data, encoding: .utf8) {
+                        hostDataJson = JSON(hostData)   
                         hostDataString = json
                     }
 
                     let encoder = JSONEncoder()
                     encoder.outputFormatting = .prettyPrinted
                     if let data = try? encoder.encode(response), let json = String(data: data, encoding: .utf8) {
+                      let responseJson = JSON(data)  
                       if((hostDataString) != ""){
-                        self.texts = "{\"response\":"+json+", \"hostResponse\":"+hostDataString+"}"
+                        self.texts = responseJson.merged(other: hostDataJson).rawString()
                       }else{
-                        self.texts = json
+                        self.texts = responseJson.rawString()
                       }
                     }
                     self.sendData()
