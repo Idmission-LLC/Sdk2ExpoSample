@@ -1,0 +1,36 @@
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+.expo-shared/
+dist/
+web-build/
+
+# Native build output and local machine files
+ios/Pods/
+ios/build/
+ios/.xcode.env.local
+*.xcuserstate
+xcuserdata/
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+
+# Secrets: never commit Firebase / Google config or signing keys
+google-services.json
+GoogleService-Info.plist
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+.env*.local
+
+# misc
+.DS_Store
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+android/.kotlin/

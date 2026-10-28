@@ -1,16 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { NativeModules, NativeEventEmitter, StyleSheet, TouchableOpacity, Text, View } from 'react-native';
-import { Container, Header, Content, Picker } from "native-base";
+import { NativeModules, NativeEventEmitter, ScrollView, TouchableOpacity, Text, View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import React from 'react'
 import * as constant from './Constant'
 import styles from './Styles'
 
 const { IDMissionSDK } = NativeModules;
-var initialize_url = "";
-var url = "";
-var login_id = "";
-var password = "";
-var merchant_id = "";
+// Fill these in with your IDmission credentials before running the app.
+var apiBaseUrl = "";   // e.g. https://api.idmission.com
+var authUrl = "";
+var debug = "n";       // "y" or "n"
+var accessToken = "";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -28,11 +28,10 @@ export default class App extends React.Component {
   componentDidMount() {
 
       IDMissionSDK.initializeSDK(
-          initialize_url,
-          url,
-          login_id,
-          password,
-          merchant_id
+          apiBaseUrl,
+          authUrl,
+          debug,
+          accessToken
       );
 
       const eventEmitter = new NativeEventEmitter(IDMissionSDK);
@@ -157,18 +156,19 @@ export default class App extends React.Component {
 
   render() {
     return (
-        <Container>
-  
-            <Content contentContainerStyle={{ justifyContent: 'center' }}>
-            <Content contentContainerStyle={{ justifyContent: 'flex-start', flexDirection: 'row', marginLeft: 25, marginRight: 15, padding:10 }}>
+        <SafeAreaProvider>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+            <StatusBar style="dark" />
+            <ScrollView contentContainerStyle={{ justifyContent: 'center' }}>
+            <View style={{ justifyContent: 'flex-start', flexDirection: 'row', marginLeft: 25, marginRight: 15, padding:10 }}>
                     
                     <Text style={styles.mainText}>Unique Customer Number - </Text>
 
                     <Text style={styles.mainText}>{this.state.uniqueCustomerNumber}</Text>
 
-                </Content>
+                </View>
 
-                <Content contentContainerStyle={{ justifyContent: 'flex-start', flexDirection: 'row', marginLeft: 15, marginRight: 15, padding:10 }}>
+                <View style={{ justifyContent: 'flex-start', flexDirection: 'row', marginLeft: 15, marginRight: 15, padding:10 }}>
 
                     <TouchableOpacity style={styles.keyButton} onPress={() => { this.press1() }}>
                         <Text style={styles.keyButtonText}>1</Text>
@@ -190,9 +190,9 @@ export default class App extends React.Component {
                         <Text style={styles.keyButtonText}>5</Text>
                     </TouchableOpacity>
 
-                </Content>
+                </View>
 
-                <Content contentContainerStyle={{ justifyContent: 'flex-start', flexDirection: 'row', marginLeft: 15, marginRight: 15, padding:10 }}>
+                <View style={{ justifyContent: 'flex-start', flexDirection: 'row', marginLeft: 15, marginRight: 15, padding:10 }}>
 
                     <TouchableOpacity style={styles.keyButton} onPress={() => { this.press6() }}>
                         <Text style={styles.keyButtonText}>6</Text>
@@ -218,7 +218,7 @@ export default class App extends React.Component {
                         <Text style={styles.keyButtonText}>Del</Text>
                     </TouchableOpacity>            
 
-                </Content>
+                </View>
 
                 <TouchableOpacity style={styles.startButton} onPress={() => { this.onServiceID20() }}>
                     <Text style={styles.startButtonText}>ID Validation</Text>
@@ -252,8 +252,9 @@ export default class App extends React.Component {
                     <Text style={styles.startButtonText}>Submit</Text>
                 </TouchableOpacity>  
 
-            </Content>
-        </Container>
+            </ScrollView>
+        </SafeAreaView>
+        </SafeAreaProvider>
     )
   }
 }
