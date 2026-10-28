@@ -152,6 +152,13 @@ android {
     }
 }
 
+configurations.all {
+    // The IDmission SDK pulls in both litert-support and litert-support-api, which
+    // share the namespace org.tensorflow.lite.support (litert-support already
+    // contains the API classes). Keep only litert-support so the manifest merges.
+    exclude group: "com.google.ai.edge.litert", module: "litert-support-api"
+}
+
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
